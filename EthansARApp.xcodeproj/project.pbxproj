@@ -8,65 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		AAEAAB951F36532700DA82D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAAB941F36532700DA82D9 /* AppDelegate.swift */; };
-		AAEAAB971F36532700DA82D9 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AAEAAB961F36532700DA82D9 /* art.scnassets */; };
 		AAEAAB991F36532700DA82D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAAB981F36532700DA82D9 /* ViewController.swift */; };
 		AAEAAB9C1F36532700DA82D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAEAAB9A1F36532700DA82D9 /* Main.storyboard */; };
-		AAEAAB9E1F36532700DA82D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAEAAB9D1F36532700DA82D9 /* Assets.xcassets */; };
 		AAEAABA11F36532700DA82D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAEAAB9F1F36532700DA82D9 /* LaunchScreen.storyboard */; };
-		AAEAABAC1F36532700DA82D9 /* EthansARAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAABAB1F36532700DA82D9 /* EthansARAppTests.swift */; };
-		AAEAABB71F36532700DA82D9 /* EthansARAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAABB61F36532700DA82D9 /* EthansARAppUITests.swift */; };
+		AAEAABC51F36556300DA82D9 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAABC41F36556300DA82D9 /* ConfigViewController.swift */; };
+		AAEAABC71F36557B00DA82D9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAABC61F36557B00DA82D9 /* Config.swift */; };
+		AAEAABC91F36559900DA82D9 /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAABC81F36559900DA82D9 /* CollisionCategory.swift */; };
+		AAEAABCB1F3655B500DA82D9 /* PBRMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAABCA1F3655B500DA82D9 /* PBRMaterial.swift */; };
+		AAEAABCF1F3655F400DA82D9 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAABCE1F3655F400DA82D9 /* Plane.swift */; };
+		AAEAABD11F3656D100DA82D9 /* tron_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = AAEAABD01F3656D100DA82D9 /* tron_grid.png */; };
+		AAEAABD31F36573F00DA82D9 /* Assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AAEAABD21F36573F00DA82D9 /* Assets.scnassets */; };
+		AAEAABD51F365A1100DA82D9 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAABD41F365A1100DA82D9 /* Cube.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		AAEAABA81F36532700DA82D9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AAEAAB891F36532700DA82D9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AAEAAB901F36532700DA82D9;
-			remoteInfo = EthansARApp;
-		};
-		AAEAABB31F36532700DA82D9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AAEAAB891F36532700DA82D9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AAEAAB901F36532700DA82D9;
-			remoteInfo = EthansARApp;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AAEAAB911F36532700DA82D9 /* EthansARApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthansARApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAEAAB941F36532700DA82D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AAEAAB961F36532700DA82D9 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		AAEAAB981F36532700DA82D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AAEAAB9B1F36532700DA82D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AAEAAB9D1F36532700DA82D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAEAABA01F36532700DA82D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAEAABA21F36532700DA82D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAEAABA71F36532700DA82D9 /* EthansARAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EthansARAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAEAABAB1F36532700DA82D9 /* EthansARAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthansARAppTests.swift; sourceTree = "<group>"; };
-		AAEAABAD1F36532700DA82D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAEAABB21F36532700DA82D9 /* EthansARAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EthansARAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAEAABB61F36532700DA82D9 /* EthansARAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthansARAppUITests.swift; sourceTree = "<group>"; };
-		AAEAABB81F36532700DA82D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAEAABC41F36556300DA82D9 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
+		AAEAABC61F36557B00DA82D9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		AAEAABC81F36559900DA82D9 /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
+		AAEAABCA1F3655B500DA82D9 /* PBRMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBRMaterial.swift; sourceTree = "<group>"; };
+		AAEAABCE1F3655F400DA82D9 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		AAEAABD01F3656D100DA82D9 /* tron_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tron_grid.png; sourceTree = "<group>"; };
+		AAEAABD21F36573F00DA82D9 /* Assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = Assets.scnassets; path = "../../ARByExample/arkit-by-example/Assets.scnassets"; sourceTree = "<group>"; };
+		AAEAABD41F365A1100DA82D9 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		AAEAAB8E1F36532700DA82D9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AAEAABA41F36532700DA82D9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AAEAABAF1F36532700DA82D9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -80,8 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				AAEAAB931F36532700DA82D9 /* EthansARApp */,
-				AAEAABAA1F36532700DA82D9 /* EthansARAppTests */,
-				AAEAABB51F36532700DA82D9 /* EthansARAppUITests */,
 				AAEAAB921F36532700DA82D9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,8 +61,6 @@
 			isa = PBXGroup;
 			children = (
 				AAEAAB911F36532700DA82D9 /* EthansARApp.app */,
-				AAEAABA71F36532700DA82D9 /* EthansARAppTests.xctest */,
-				AAEAABB21F36532700DA82D9 /* EthansARAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,31 +70,19 @@
 			children = (
 				AAEAAB941F36532700DA82D9 /* AppDelegate.swift */,
 				AAEAAB981F36532700DA82D9 /* ViewController.swift */,
-				AAEAAB961F36532700DA82D9 /* art.scnassets */,
+				AAEAABC81F36559900DA82D9 /* CollisionCategory.swift */,
+				AAEAABC41F36556300DA82D9 /* ConfigViewController.swift */,
+				AAEAABD41F365A1100DA82D9 /* Cube.swift */,
+				AAEAABC61F36557B00DA82D9 /* Config.swift */,
+				AAEAABCA1F3655B500DA82D9 /* PBRMaterial.swift */,
+				AAEAABCE1F3655F400DA82D9 /* Plane.swift */,
+				AAEAABD01F3656D100DA82D9 /* tron_grid.png */,
+				AAEAABD21F36573F00DA82D9 /* Assets.scnassets */,
 				AAEAAB9A1F36532700DA82D9 /* Main.storyboard */,
-				AAEAAB9D1F36532700DA82D9 /* Assets.xcassets */,
 				AAEAAB9F1F36532700DA82D9 /* LaunchScreen.storyboard */,
 				AAEAABA21F36532700DA82D9 /* Info.plist */,
 			);
 			path = EthansARApp;
-			sourceTree = "<group>";
-		};
-		AAEAABAA1F36532700DA82D9 /* EthansARAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				AAEAABAB1F36532700DA82D9 /* EthansARAppTests.swift */,
-				AAEAABAD1F36532700DA82D9 /* Info.plist */,
-			);
-			path = EthansARAppTests;
-			sourceTree = "<group>";
-		};
-		AAEAABB51F36532700DA82D9 /* EthansARAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				AAEAABB61F36532700DA82D9 /* EthansARAppUITests.swift */,
-				AAEAABB81F36532700DA82D9 /* Info.plist */,
-			);
-			path = EthansARAppUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,42 +105,6 @@
 			productReference = AAEAAB911F36532700DA82D9 /* EthansARApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AAEAABA61F36532700DA82D9 /* EthansARAppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AAEAABBE1F36532700DA82D9 /* Build configuration list for PBXNativeTarget "EthansARAppTests" */;
-			buildPhases = (
-				AAEAABA31F36532700DA82D9 /* Sources */,
-				AAEAABA41F36532700DA82D9 /* Frameworks */,
-				AAEAABA51F36532700DA82D9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AAEAABA91F36532700DA82D9 /* PBXTargetDependency */,
-			);
-			name = EthansARAppTests;
-			productName = EthansARAppTests;
-			productReference = AAEAABA71F36532700DA82D9 /* EthansARAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		AAEAABB11F36532700DA82D9 /* EthansARAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AAEAABC11F36532700DA82D9 /* Build configuration list for PBXNativeTarget "EthansARAppUITests" */;
-			buildPhases = (
-				AAEAABAE1F36532700DA82D9 /* Sources */,
-				AAEAABAF1F36532700DA82D9 /* Frameworks */,
-				AAEAABB01F36532700DA82D9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AAEAABB41F36532700DA82D9 /* PBXTargetDependency */,
-			);
-			name = EthansARAppUITests;
-			productName = EthansARAppUITests;
-			productReference = AAEAABB21F36532700DA82D9 /* EthansARAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -196,14 +117,6 @@
 				TargetAttributes = {
 					AAEAAB901F36532700DA82D9 = {
 						CreatedOnToolsVersion = 9.0;
-					};
-					AAEAABA61F36532700DA82D9 = {
-						CreatedOnToolsVersion = 9.0;
-						TestTargetID = AAEAAB901F36532700DA82D9;
-					};
-					AAEAABB11F36532700DA82D9 = {
-						CreatedOnToolsVersion = 9.0;
-						TestTargetID = AAEAAB901F36532700DA82D9;
 					};
 				};
 			};
@@ -221,8 +134,6 @@
 			projectRoot = "";
 			targets = (
 				AAEAAB901F36532700DA82D9 /* EthansARApp */,
-				AAEAABA61F36532700DA82D9 /* EthansARAppTests */,
-				AAEAABB11F36532700DA82D9 /* EthansARAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -232,24 +143,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAEAAB971F36532700DA82D9 /* art.scnassets in Resources */,
 				AAEAABA11F36532700DA82D9 /* LaunchScreen.storyboard in Resources */,
-				AAEAAB9E1F36532700DA82D9 /* Assets.xcassets in Resources */,
+				AAEAABD31F36573F00DA82D9 /* Assets.scnassets in Resources */,
 				AAEAAB9C1F36532700DA82D9 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AAEAABA51F36532700DA82D9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AAEAABB01F36532700DA82D9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				AAEAABD11F3656D100DA82D9 /* tron_grid.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,40 +158,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAEAAB991F36532700DA82D9 /* ViewController.swift in Sources */,
+				AAEAABC91F36559900DA82D9 /* CollisionCategory.swift in Sources */,
+				AAEAABC71F36557B00DA82D9 /* Config.swift in Sources */,
 				AAEAAB951F36532700DA82D9 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AAEAABA31F36532700DA82D9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AAEAABAC1F36532700DA82D9 /* EthansARAppTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AAEAABAE1F36532700DA82D9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AAEAABB71F36532700DA82D9 /* EthansARAppUITests.swift in Sources */,
+				AAEAABD51F365A1100DA82D9 /* Cube.swift in Sources */,
+				AAEAABC51F36556300DA82D9 /* ConfigViewController.swift in Sources */,
+				AAEAABCB1F3655B500DA82D9 /* PBRMaterial.swift in Sources */,
+				AAEAABCF1F3655F400DA82D9 /* Plane.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		AAEAABA91F36532700DA82D9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AAEAAB901F36532700DA82D9 /* EthansARApp */;
-			targetProxy = AAEAABA81F36532700DA82D9 /* PBXContainerItemProxy */;
-		};
-		AAEAABB41F36532700DA82D9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AAEAAB901F36532700DA82D9 /* EthansARApp */;
-			targetProxy = AAEAABB31F36532700DA82D9 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AAEAAB9A1F36532700DA82D9 /* Main.storyboard */ = {
@@ -429,7 +303,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ecm.EthansARApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -443,69 +317,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ecm.EthansARApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		AAEAABBF1F36532700DA82D9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = ZTT5ARXB25;
-				INFOPLIST_FILE = EthansARAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ecm.EthansARAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EthansARApp.app/EthansARApp";
-			};
-			name = Debug;
-		};
-		AAEAABC01F36532700DA82D9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = ZTT5ARXB25;
-				INFOPLIST_FILE = EthansARAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ecm.EthansARAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EthansARApp.app/EthansARApp";
-			};
-			name = Release;
-		};
-		AAEAABC21F36532700DA82D9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = ZTT5ARXB25;
-				INFOPLIST_FILE = EthansARAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ecm.EthansARAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = EthansARApp;
-			};
-			name = Debug;
-		};
-		AAEAABC31F36532700DA82D9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = ZTT5ARXB25;
-				INFOPLIST_FILE = EthansARAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ecm.EthansARAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = EthansARApp;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -528,22 +340,7 @@
 				AAEAABBD1F36532700DA82D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		AAEAABBE1F36532700DA82D9 /* Build configuration list for PBXNativeTarget "EthansARAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AAEAABBF1F36532700DA82D9 /* Debug */,
-				AAEAABC01F36532700DA82D9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		AAEAABC11F36532700DA82D9 /* Build configuration list for PBXNativeTarget "EthansARAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AAEAABC21F36532700DA82D9 /* Debug */,
-				AAEAABC31F36532700DA82D9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
