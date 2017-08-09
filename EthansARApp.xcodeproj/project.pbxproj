@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AAEAAB951F36532700DA82D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAAB941F36532700DA82D9 /* AppDelegate.swift */; };
 		AAEAAB991F36532700DA82D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAAB981F36532700DA82D9 /* ViewController.swift */; };
-		AAEAAB9C1F36532700DA82D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAEAAB9A1F36532700DA82D9 /* Main.storyboard */; };
 		AAEAABA11F36532700DA82D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAEAAB9F1F36532700DA82D9 /* LaunchScreen.storyboard */; };
 		AAEAABC51F36556300DA82D9 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAABC41F36556300DA82D9 /* ConfigViewController.swift */; };
 		AAEAABC71F36557B00DA82D9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAABC61F36557B00DA82D9 /* Config.swift */; };
@@ -19,13 +18,13 @@
 		AAEAABD11F3656D100DA82D9 /* tron_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = AAEAABD01F3656D100DA82D9 /* tron_grid.png */; };
 		AAEAABD31F36573F00DA82D9 /* Assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AAEAABD21F36573F00DA82D9 /* Assets.scnassets */; };
 		AAEAABD51F365A1100DA82D9 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAABD41F365A1100DA82D9 /* Cube.swift */; };
+		AAEAABDD1F36691700DA82D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAEAABDB1F36691700DA82D9 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AAEAAB911F36532700DA82D9 /* EthansARApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthansARApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAEAAB941F36532700DA82D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAEAAB981F36532700DA82D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AAEAAB9B1F36532700DA82D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AAEAABA01F36532700DA82D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAEAABA21F36532700DA82D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAEAABC41F36556300DA82D9 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +35,7 @@
 		AAEAABD01F3656D100DA82D9 /* tron_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tron_grid.png; sourceTree = "<group>"; };
 		AAEAABD21F36573F00DA82D9 /* Assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = Assets.scnassets; path = "../../ARByExample/arkit-by-example/Assets.scnassets"; sourceTree = "<group>"; };
 		AAEAABD41F365A1100DA82D9 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
+		AAEAABDC1F36691700DA82D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../../ARByExample/arkit-by-example/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +77,8 @@
 				AAEAABCA1F3655B500DA82D9 /* PBRMaterial.swift */,
 				AAEAABCE1F3655F400DA82D9 /* Plane.swift */,
 				AAEAABD01F3656D100DA82D9 /* tron_grid.png */,
+				AAEAABDB1F36691700DA82D9 /* Main.storyboard */,
 				AAEAABD21F36573F00DA82D9 /* Assets.scnassets */,
-				AAEAAB9A1F36532700DA82D9 /* Main.storyboard */,
 				AAEAAB9F1F36532700DA82D9 /* LaunchScreen.storyboard */,
 				AAEAABA21F36532700DA82D9 /* Info.plist */,
 			);
@@ -145,8 +145,8 @@
 			files = (
 				AAEAABA11F36532700DA82D9 /* LaunchScreen.storyboard in Resources */,
 				AAEAABD31F36573F00DA82D9 /* Assets.scnassets in Resources */,
-				AAEAAB9C1F36532700DA82D9 /* Main.storyboard in Resources */,
 				AAEAABD11F3656D100DA82D9 /* tron_grid.png in Resources */,
+				AAEAABDD1F36691700DA82D9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,20 +171,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		AAEAAB9A1F36532700DA82D9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AAEAAB9B1F36532700DA82D9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AAEAAB9F1F36532700DA82D9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AAEAABA01F36532700DA82D9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		AAEAABDB1F36691700DA82D9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAEAABDC1F36691700DA82D9 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

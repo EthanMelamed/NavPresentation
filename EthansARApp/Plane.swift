@@ -68,7 +68,7 @@ class Plane: SCNNode {
     
     func changeMaterial() {
         // Static, all future cubes use this to have the same material
-        currentMaterialIndex = (currentMaterialIndex + 1) % 5
+        currentMaterialIndex = (currentMaterialIndex + 1) % 2
         
         var material = Plane.currentMaterial()
         let transparentMaterial = SCNMaterial()

@@ -175,26 +175,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         }
         
         // Perform a hit test using the screen coordinates to see if the user pressed on
-        // any 3D geometry in the scene, if so we will open a config menu for that
-        // geometry to customize the appearance
+        // any 3D geometry in the scene, if so we will do some shit
         
         let holdPoint = recognizer.location(in: self.sceneView)
-        let result = self.sceneView.hitTest(holdPoint, options: [SCNHitTestOption.boundingBoxOnly: true, SCNHitTestOption.firstFoundOnly : true])
-        if result.count == 0 {
+        let planeHit = self.sceneView.hitTest(holdPoint, types: ARHitTestResult.ResultType.existingPlaneUsingExtent)
+        if planeHit.count == 0 {
             return
         }
-        
-        let hitResult = result.first
-        let node = hitResult?.node
-        
-        // We add all the geometry as children of the Plane/Cube SCNNode object, so we can
-        // get the parent and see what type of geometry this is
-        let parentNode = node?.parent
-        if (parentNode?.isKind(of: Cube.classForCoder()))! {
-            (parentNode as! Cube).changeMaterial()
-        } else {
-            (parentNode as! Plane).changeMaterial()
-        }
+        let plane = planes[(planeHit.first?.anchor?.identifier)!]
+        plane?.changeMaterial();
     }
     
     func hidePlanes() {
@@ -372,6 +361,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         
         // When a new plane is detected we create a new SceneKit plane to visualize it in 3D
         let plane = Plane(anchor: anchor as! ARPlaneAnchor, isHidden: false, withMaterial: Plane.currentMaterial()!)
+        plane.name = "plane_"+UUID.init().uuidString
         planes[anchor.identifier] = plane
         node.addChildNode(plane)
     }
