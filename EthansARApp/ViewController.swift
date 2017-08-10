@@ -19,6 +19,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
     var cubes: [Cube] = []
     var config = Config()
     var arConfig = ARWorldTrackingSessionConfiguration()
+    var virtualObject: VirtualObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -184,6 +185,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         }
         let plane = planes[(planeHit.first?.anchor?.identifier)!]
         plane?.changeMaterial();
+        loadAirplane()
     }
     
     func hidePlanes() {
@@ -396,6 +398,46 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
+    }
+    
+    func loadAirplane(plane: Plane? = nil) {
+        
+        // Load the airplane model asynchronously.
+        DispatchQueue.global().async {
+            let object = VirtualObject.availableObjects[0]
+            object.viewController = self
+            self.virtualObject = object
+            
+            object.loadModel()
+            
+            //set the airplanes position
+            DispatchQueue.main.async {
+                if plane != nil {
+                    //add the airplane to the plane
+                }
+                else{
+                    self.setNewAirplanePosition(SCNVector3Zero)
+                }
+            }
+        }
+    }
+    func setNewAirplanePosition(_ pos: SCNVector3) {
+        
+        guard let object = virtualObject, let cameraTransform = sceneView.session.currentFrame?.camera.transform else {
+            return
+        }
+        
+        
+        let cameraWorldPos = SCNVector3.positionFromTransform(cameraTransform)
+        let cameraToPosition = SCNVector3(pos.x - cameraWorldPos.x, pos.y - cameraWorldPos.y, pos.z - cameraWorldPos.z)
+        
+        // Limit the distance of the object from the camera to a maximum of 10 meters.
+        
+        object.position = SCNVector3(cameraToPosition.x + cameraWorldPos.x, cameraToPosition.y + cameraWorldPos.y, cameraToPosition.z + cameraWorldPos.z)
+        
+        if object.parent == nil {
+            sceneView.scene.rootNode.addChildNode(object)
+        }
     }
 }
 
