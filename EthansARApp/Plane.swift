@@ -6,15 +6,6 @@
 //  Copyright © 2017 Ethan . All rights reserved.
 //
 
-
-//
-//  Plane.swift
-//  arkit-by-example
-//
-//  Created by Arnaud Pasquelin on 05/07/2017.
-//  Copyright © 2017 Arnaud Pasquelin. All rights reserved.
-//
-
 import UIKit
 import ARKit
 

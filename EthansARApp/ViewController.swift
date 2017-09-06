@@ -130,54 +130,24 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         materialGestureRecognizer.minimumPressDuration = 0.5
         self.sceneView.addGestureRecognizer(materialGestureRecognizer)
         
-        // Press and hold with two fingers causes an explosion
-        let explodeGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(explodeFrom))
-        explodeGestureRecognizer.minimumPressDuration = 1
-        explodeGestureRecognizer.numberOfTouchesRequired = 2
-        self.sceneView.addGestureRecognizer(explodeGestureRecognizer)
     }
     
     @objc func insertCubeFrom(recognizer: UITapGestureRecognizer) {
         // Take the screen space tap coordinates and pass them to the hitTest method on the ARSCNView instance
         let tapPoint = recognizer.location(in: self.sceneView)
-        let result = self.sceneView.hitTest(tapPoint, types: ARHitTestResult.ResultType.existingPlaneUsingExtent)
-        
-        // If the intersection ray passes through any plane geometry they will be returned, with the planes
-        // ordered by distance from the camera
-        if result.count == 0 {
-            return
         }
         
-        // If there are multiple hits, just pick the closest plane
-        let hitResult = result.first
-        self.insertCube(hitResult: hitResult!)
     }
     
     @objc func explodeFrom(recognizer: UITapGestureRecognizer) {
-        if recognizer.state != UIGestureRecognizerState.began {
-            return
         }
-        
-        // Perform a hit test using the screen coordinates to see if the user pressed on
-        // a plane.
-        let holdPoint = recognizer.location(in: self.sceneView)
-        let result = self.sceneView.hitTest(holdPoint, types: ARHitTestResult.ResultType.existingPlaneUsingExtent)
-        if result.count == 0 {
-            return
         }
-        
-        let hitResult = result.first
-        self.explode(hitResult: hitResult!)
     }
     
     @objc func geometryConfigFrom(recognizer: UITapGestureRecognizer) {
         if recognizer.state != UIGestureRecognizerState.began {
             return
         }
-        
-        // Perform a hit test using the screen coordinates to see if the user pressed on
-        // any 3D geometry in the scene, if so we will do some shit
-        
         let holdPoint = recognizer.location(in: self.sceneView)
         let planeHit = self.sceneView.hitTest(holdPoint, types: ARHitTestResult.ResultType.existingPlaneUsingExtent)
         if planeHit.count == 0 {
@@ -207,52 +177,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
     }
     
     func explode(hitResult: ARHitTestResult) {
-        // For an explosion, we take the world position of the explosion and the position of each piece of geometry
-        // in the world. We then take the distance between those two points, the closer to the explosion point the
-        // geometry is the stronger the force of the explosion.
-        
-        // The hitResult will be a point on the plane, we move the explosion down a little bit below the
-        // plane so that the goemetry fly upwards off the plane
-        let explosionYOffset: Float = 0.1
-        
-        let position = SCNVector3Make(hitResult.worldTransform.columns.3.x, hitResult.worldTransform.columns.3.y.advanced(by: -explosionYOffset), hitResult.worldTransform.columns.3.z)
-        
-        // We need to find all of the geometry affected by the explosion, ideally we would have some
-        // spatial data structure like an octree to efficiently find all geometry close to the explosion
-        // but since we don't have many items, we can just loop through all of the current geometry
         for cubeNode in self.cubes {
-            // The distance between the explosion and the geometry
-            var distance = SCNVector3Make(cubeNode.worldPosition.x - position.x, cubeNode.worldPosition.y - position.y, cubeNode.worldPosition.z - position.z)
-            let length: Float = sqrtf(distance.x * distance.x + distance.y * distance.y + distance.z * distance.z)
-            
-            // Set the maximum distance that the explosion will be felt, anything further than 2 meters from
-            // the explosion will not be affected by any forces
-            let maxDistance: Float = 2
-            var scale = max(0, maxDistance - length)
-            
-            // Scale the force of the explosion
-            scale = scale * scale * 5
-            
-            // Scale the distance vector to the appropriate scale
-            distance.x = distance.x / length * scale
-            distance.y = distance.y / length * scale
-            distance.z = distance.z / length * scale
-            
-            // Apply a force to the geometry. We apply the force at one of the corners of the cube
-            // to make it spin more, vs just at the center
-            cubeNode.childNodes.first?.physicsBody?.applyForce(distance, at: SCNVector3Make(0.05, 0.05, 0.05), asImpulse: true)
         }
-    }
-    
-    func insertCube(hitResult: ARHitTestResult) {
-        // We insert the geometry slightly above the point the user tapped, so that it drops onto the plane
-        // using the physics engine
-        let insertionYOffset: Float = 0.5
-        let position = SCNVector3Make(hitResult.worldTransform.columns.3.x, hitResult.worldTransform.columns.3.y.advanced(by: insertionYOffset), hitResult.worldTransform.columns.3.z)
-        
-        let cube = Cube.init(position, with: Cube.currentMaterial())
-        self.cubes.append(cube)
-        self.sceneView.scene.rootNode.addChildNode(cube)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -385,21 +311,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         self.planes.removeValue(forKey: anchor.identifier)
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, willUpdate node: SCNNode, for anchor: ARAnchor) {
-    }
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-    }
-    
     func loadAirplane(plane: Plane? = nil) {
         
         // Load the airplane model asynchronously.
@@ -421,23 +332,4 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
             }
         }
     }
-    func setNewAirplanePosition(_ pos: SCNVector3) {
-        
-        guard let object = virtualObject, let cameraTransform = sceneView.session.currentFrame?.camera.transform else {
-            return
-        }
-        
-        
-        let cameraWorldPos = SCNVector3.positionFromTransform(cameraTransform)
-        let cameraToPosition = SCNVector3(pos.x - cameraWorldPos.x, pos.y - cameraWorldPos.y, pos.z - cameraWorldPos.z)
-        
-        // Limit the distance of the object from the camera to a maximum of 10 meters.
-        
-        object.position = SCNVector3(cameraToPosition.x + cameraWorldPos.x, cameraToPosition.y + cameraWorldPos.y, cameraToPosition.z + cameraWorldPos.z)
-        
-        if object.parent == nil {
-            sceneView.scene.rootNode.addChildNode(object)
-        }
-    }
 }
-
