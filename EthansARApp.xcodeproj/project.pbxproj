@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA9619161F3C0B9900A7C450 /* Airplane.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9619151F3C0B9900A7C450 /* Airplane.swift */; };
+		AA3CD9931F5A16AC002FF9A0 /* Aircraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CD9921F5A16AC002FF9A0 /* Aircraft.swift */; };
 		AA9619181F3C0BD100A7C450 /* VirtualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9619171F3C0BD100A7C450 /* VirtualObject.swift */; };
 		AA96191A1F3C0F9F00A7C450 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9619191F3C0F9F00A7C450 /* Utilities.swift */; };
 		AAEAAB951F36532700DA82D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAAB941F36532700DA82D9 /* AppDelegate.swift */; };
@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AA9619151F3C0B9900A7C450 /* Airplane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airplane.swift; sourceTree = "<group>"; };
+		AA3CD9921F5A16AC002FF9A0 /* Aircraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aircraft.swift; sourceTree = "<group>"; };
 		AA9619171F3C0BD100A7C450 /* VirtualObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObject.swift; sourceTree = "<group>"; };
 		AA9619191F3C0F9F00A7C450 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		AAEAAB911F36532700DA82D9 /* EthansARApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthansARApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,8 +58,8 @@
 		AA9619141F3C0B7600A7C450 /* Virtual Objects */ = {
 			isa = PBXGroup;
 			children = (
-				AA9619151F3C0B9900A7C450 /* Airplane.swift */,
 				AA9619171F3C0BD100A7C450 /* VirtualObject.swift */,
+				AA3CD9921F5A16AC002FF9A0 /* Aircraft.swift */,
 			);
 			name = "Virtual Objects";
 			sourceTree = "<group>";
@@ -174,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA3CD9931F5A16AC002FF9A0 /* Aircraft.swift in Sources */,
 				AA9619181F3C0BD100A7C450 /* VirtualObject.swift in Sources */,
 				AAEAAB991F36532700DA82D9 /* ViewController.swift in Sources */,
 				AA96191A1F3C0F9F00A7C450 /* Utilities.swift in Sources */,
@@ -184,7 +185,6 @@
 				AAEAABC51F36556300DA82D9 /* ConfigViewController.swift in Sources */,
 				AAEAABCB1F3655B500DA82D9 /* PBRMaterial.swift in Sources */,
 				AAEAABCF1F3655F400DA82D9 /* Plane.swift in Sources */,
-				AA9619161F3C0B9900A7C450 /* Airplane.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

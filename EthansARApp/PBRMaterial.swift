@@ -36,4 +36,31 @@ class PBRMaterial: NSObject {
         materials[name] = mat
         return mat!
     }
+    class func getDebugMaterial(name: String) -> SCNMaterial {
+        var mat = materials[name]
+        if let mat = mat {
+            return mat
+        }
+        mat = SCNMaterial()
+        mat!.lightingModel = SCNMaterial.LightingModel.physicallyBased
+        mat!.diffuse.contents = UIImage(named: "./Assets.scnassets/Materials/debug/\(name).png")
+        mat!.diffuse.wrapS = SCNWrapMode.repeat
+        mat!.diffuse.wrapT = SCNWrapMode.repeat
+        materials[name] = mat
+        return mat!
+    }
+    class func getRunwayMaterial() -> SCNMaterial {
+        let name = "runway"
+        var mat = materials[name]
+        if let mat = mat {
+            return mat
+        }
+        mat = SCNMaterial()
+        mat!.lightingModel = SCNMaterial.LightingModel.physicallyBased
+        mat!.diffuse.contents = UIImage(named: "./Assets.scnassets/Materials/runway/runway.jpg")
+        mat!.diffuse.wrapS = SCNWrapMode.repeat
+        mat!.diffuse.wrapT = SCNWrapMode.repeat
+        materials[name] = mat
+        return mat!
+    }
 }

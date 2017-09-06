@@ -20,6 +20,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
     var config = Config()
     var arConfig = ARWorldTrackingSessionConfiguration()
     var virtualObject: VirtualObject?
+    var runway: Plane?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,30 +122,69 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
     
     func setupRecognizers() {
         // Single tap will insert a new piece of geometry into the scene
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(insertCubeFrom))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(activatePlane))
         tapGestureRecognizer.numberOfTapsRequired = 1
         self.sceneView.addGestureRecognizer(tapGestureRecognizer)
         
         // Press and hold will open a config menu for the selected geometry
-        let materialGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(geometryConfigFrom))
+        let materialGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(setRunway))
         materialGestureRecognizer.minimumPressDuration = 0.5
         self.sceneView.addGestureRecognizer(materialGestureRecognizer)
         
     }
     
-    @objc func insertCubeFrom(recognizer: UITapGestureRecognizer) {
+    @objc func activatePlane(recognizer: UITapGestureRecognizer) {
+        
         // Take the screen space tap coordinates and pass them to the hitTest method on the ARSCNView instance
         let tapPoint = recognizer.location(in: self.sceneView)
+        let planeHit = self.sceneView.hitTest(tapPoint, types: ARHitTestResult.ResultType.existingPlaneUsingExtent)
+        guard let plane = planes[(planeHit.first?.anchor?.identifier)!] else { return }
+        guard let p = runway else { return }
+        print(plane)
+        print(p)
+        if (plane == p){
+            takeOff()
         }
         
     }
     
-    @objc func explodeFrom(recognizer: UITapGestureRecognizer) {
+    func takeOff(){
+        guard let aircraft = virtualObject as! Aircraft?, let p = runway else { return }
+        
+        let groundEnd: SCNVector3, airEnd: SCNVector3, rAxis: SCNVector3, r1: CGFloat, r2: CGFloat
+        //SET ANIMATION PARAMS FOR AN AIRCRAFT ON THE XZ PLACING FACING POSITIVE X
+        if(p.wide!){
+            groundEnd = SCNVector3(x: Float(0.45 * p.planeGeometry.width), y: 0, z: 0)
+            rAxis = SCNVector3(x: 0, y: 0, z: 1)
+            r1 = CGFloat.pi/4
+            r2 = -CGFloat.pi/4
+            airEnd = SCNVector3.add( v1: groundEnd, v2: SCNVector3(2 * p.planeGeometry.width, p.planeGeometry.width/2, 0))
         }
+            //SET ANIMATION PARAMS FOR AN AIRCRAFT ON THE XZ PLACING FACING POSITIVE Z
+        else {
+            groundEnd = SCNVector3(x: 0, y: 0, z: Float(0.45 * p.planeGeometry.length))
+            rAxis = SCNVector3(x: 1, y: 0, z: 0)
+            r1 = -CGFloat.pi/4
+            r2 = CGFloat.pi/4
+            airEnd = SCNVector3.add( v1: groundEnd, v2: SCNVector3(0, p.planeGeometry.length/2, 2 * p.planeGeometry.length))
         }
+        //BUILD ANIMATION FROM ACTIONS
+        let actionSequence = SCNAction.sequence([
+            SCNAction.move(to: groundEnd, duration: 3.0),
+            SCNAction.group([
+                    SCNAction.sequence([
+                        SCNAction.rotate(by: r1, around: rAxis, duration: 2.5),
+                        SCNAction.rotate(by: r2, around: rAxis, duration: 2.5),
+                        ]),
+                    SCNAction.move(to: airEnd, duration: 5.0)
+                ])
+            ])
+        
+        //RUN ANIMATION
+        aircraft.runAction(actionSequence)
     }
     
-    @objc func geometryConfigFrom(recognizer: UITapGestureRecognizer) {
+    @objc func setRunway(recognizer: UITapGestureRecognizer) {
         if recognizer.state != UIGestureRecognizerState.began {
             return
         }
@@ -153,9 +193,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         if planeHit.count == 0 {
             return
         }
-        let plane = planes[(planeHit.first?.anchor?.identifier)!]
-        plane?.changeMaterial();
-        loadAirplane()
+        if(virtualObject != nil){
+            runway?.reset()
+            virtualObject!.rotation = SCNVector4(0, 0, 0, 0)
+            virtualObject = nil
+        }
+        else{
+            let plane = planes[(planeHit.first?.anchor?.identifier)!]
+            plane?.setMaterial(material: PBRMaterial.getRunwayMaterial())
+            plane?.setTextureScale();
+            self.runway = plane;
+            loadAirplane()
+        }
     }
     
     func hidePlanes() {
@@ -176,8 +225,27 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         self.sceneView.session.run(self.arConfig)
     }
     
-    func explode(hitResult: ARHitTestResult) {
-        for cubeNode in self.cubes {
+    func addDebugCubes(plane: Plane? = nil){
+        guard let p = plane else{
+            return
+        }
+        
+        // Load the airplane model asynchronously.
+        DispatchQueue.global().async {
+            //set the airplanes position
+            let debugCubes: [Cube] = [
+                Cube.init(SCNVector3(p.planeGeometry.width, 0, 0), with: Cube.debugMaterial(name: "x")!, addPhysics: false),
+                Cube.init(SCNVector3(-p.planeGeometry.width, 0, 0), with: Cube.debugMaterial(name: "-x")!, addPhysics: false),
+                Cube.init(SCNVector3(0, 0, p.planeGeometry.length), with: Cube.debugMaterial(name: "z")!, addPhysics: false),
+                Cube.init(SCNVector3(0, 0, -p.planeGeometry.length), with: Cube.debugMaterial(name: "-z")!, addPhysics: false)
+            ]
+            for cube in debugCubes {
+                DispatchQueue.main.async {
+                    cube.scale = SCNVector3(0.3, 0.3, 0.3)
+                    self.cubes.append(cube)
+                    p.addChildNode(cube)
+                }
+            }
         }
     }
     
@@ -281,19 +349,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         let intensity = estimate.ambientIntensity / 1000.0
         self.sceneView.scene.lightingEnvironment.intensity = intensity
     }
-    
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        if !anchor.isKind(of: ARPlaneAnchor.classForCoder()) {
-            return
-        }
+    //ADD NEW PLANE
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for planeAnchor: ARAnchor) {
+        guard let anchor = planeAnchor as? ARPlaneAnchor else { return }
         
         // When a new plane is detected we create a new SceneKit plane to visualize it in 3D
-        let plane = Plane(anchor: anchor as! ARPlaneAnchor, isHidden: false, withMaterial: Plane.currentMaterial()!)
+        let plane = Plane(anchor: anchor, isHidden: false, withMaterial: Plane.tronMaterial()!)
         plane.name = "plane_"+UUID.init().uuidString
         planes[anchor.identifier] = plane
         node.addChildNode(plane)
     }
     
+    //UPDATE PLANE
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         guard let plane = planes[anchor.identifier] else {
             return
@@ -305,30 +372,44 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         plane.update(anchor: anchor as! ARPlaneAnchor)
     }
     
+    //REMOVE ABSORBED PLANE
     func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
         // Nodes will be removed if planes multiple individual planes that are detected to all be
         // part of a larger plane are merged.
         self.planes.removeValue(forKey: anchor.identifier)
     }
     
-    func loadAirplane(plane: Plane? = nil) {
-        
+    func loadAirplane() {
+        guard let p = runway else{
+            return
+        }
         // Load the airplane model asynchronously.
         DispatchQueue.global().async {
-            let object = VirtualObject.availableObjects[0]
+            self.virtualObject?.removeFromParentNode()
+            self.virtualObject = nil
+            let object = VirtualObject.availableObjects[0] as! Aircraft
             object.viewController = self
-            self.virtualObject = object
-            
-            object.loadModel()
-            
-            //set the airplanes position
+            object.loadAircraftModel()
             DispatchQueue.main.async {
-                if plane != nil {
-                    //add the airplane to the plane
+                let x: CGFloat, z: CGFloat, rotation: Float
+                let wide: Bool = p.planeGeometry.width >= p.planeGeometry.length;
+                if(wide){
+                    x = -0.45 * p.planeGeometry.width
+                    z = 0
+                    rotation = -Float.pi/2
                 }
                 else{
-                    self.setNewAirplanePosition(SCNVector3Zero)
+                    x = -0
+                    z = -0.45 * p.planeGeometry.length
+                    rotation = Float.pi
+                    p.setTextureScale(rotation: Float.pi/2, material: PBRMaterial.getRunwayMaterial())
                 }
+                object.scale = SCNVector3(0.005, 0.005, 0.005)
+                object.transform = SCNMatrix4Rotate(object.transform, -Float.pi/2, 1, 0, 0)
+                object.transform = SCNMatrix4Rotate(object.transform, rotation, 0, 1, 0)
+                object.position = SCNVector3(x, 0, z)
+                self.virtualObject = object
+                p.addChildNode(object)
             }
         }
     }

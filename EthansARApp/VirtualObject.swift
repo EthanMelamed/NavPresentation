@@ -66,6 +66,6 @@ class VirtualObject: SCNNode {
 
 extension VirtualObject {
     static let availableObjects: [VirtualObject] = [
-        Airplane()
+        Aircraft()
     ]
 }
