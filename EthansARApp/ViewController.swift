@@ -138,11 +138,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         // Take the screen space tap coordinates and pass them to the hitTest method on the ARSCNView instance
         let tapPoint = recognizer.location(in: self.sceneView)
         let planeHit = self.sceneView.hitTest(tapPoint, types: ARHitTestResult.ResultType.existingPlaneUsingExtent)
-        guard let plane = planes[(planeHit.first?.anchor?.identifier)!] else { return }
+        guard let id = (planeHit.first?.anchor?.identifier) else { return }
+        guard let plane = planes[id] else { return }
         guard let p = runway else { return }
-        print(plane)
-        print(p)
         if (plane == p){
+//            p.setRunwayTextureScale(rotation: Float.pi/2)
             takeOff()
         }
         
@@ -172,13 +172,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         let actionSequence = SCNAction.sequence([
             SCNAction.move(to: groundEnd, duration: 3.0),
             SCNAction.group([
-                    SCNAction.sequence([
-                        SCNAction.rotate(by: r1, around: rAxis, duration: 2.5),
-                        SCNAction.rotate(by: r2, around: rAxis, duration: 2.5),
-                        ]),
-                    SCNAction.move(to: airEnd, duration: 5.0)
-                ])
-            ])
+                SCNAction.sequence([
+                    SCNAction.rotate(by: r1, around: rAxis, duration: 2.5),
+                    SCNAction.rotate(by: r2, around: rAxis, duration: 2.5),
+                    ]),
+                SCNAction.move(to: airEnd, duration: 5.0)
+            ]),
+            SCNAction.repeat(SCNAction.move(by: groundEnd, duration: 1.5), count: 10)
+        ])
         
         //RUN ANIMATION
         aircraft.runAction(actionSequence)
@@ -196,12 +197,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         if(virtualObject != nil){
             runway?.reset()
             virtualObject!.rotation = SCNVector4(0, 0, 0, 0)
+            virtualObject!.removeAllActions()
             virtualObject = nil
         }
         else{
             let plane = planes[(planeHit.first?.anchor?.identifier)!]
+            plane?.isRunway = false
             plane?.setMaterial(material: PBRMaterial.getRunwayMaterial())
-            plane?.setTextureScale();
+            plane?.setRunwayTextureScale();
             self.runway = plane;
             loadAirplane()
         }
