@@ -125,6 +125,28 @@ class Plane: SCNNode {
         texture.normal.contentsTransform = m
     }
     
+    func setRunwayTextureScale(rotation: Float? = nil, material: SCNMaterial? = nil, fit: Bool = false) {
+        let width = Float(planeGeometry.width)
+        let height = Float(planeGeometry.length)
+        
+        // As the width/height of the plane updates, we want our tron grid material to
+        // cover the entire plane, repeating the texture over and over. Also if the
+        // grid is less than 1 unit, we don't want to squash the texture to fit, so
+        // scaling updates the texture co-ordinates to crop the texture in that case
+        let texture = material != nil ? material! : planeGeometry.materials[4]
+        
+        let scaleFactor:Float = 2
+        var m: SCNMatrix4 = SCNMatrix4MakeScale(width * scaleFactor, height * scaleFactor, height * scaleFactor)
+        if(rotation != nil){
+            textureRotation = rotation! + textureRotation
+        }
+        m = SCNMatrix4Rotate(m, textureRotation, 0, 1, 0)
+        texture.diffuse.contentsTransform = m
+        texture.roughness.contentsTransform = m
+        texture.metalness.contentsTransform = m
+        texture.normal.contentsTransform = m
+    }
+    
     func hide() {
         let transparentMaterial = SCNMaterial()
         transparentMaterial.diffuse.contents = UIColor(white: 1.0, alpha: 0.0)

@@ -18,7 +18,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
     var planes: [UUID:Plane] = [:]
     var cubes: [Cube] = []
     var config = Config()
-    var arConfig = ARWorldTrackingSessionConfiguration()
+    var arConfig = ARWorldTrackingConfiguration()
     var virtualObject: VirtualObject?
     var runway: Plane?;
     
@@ -30,9 +30,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         self.setupRecognizers()
         
         // Create a ARSession configuration object we can re-use
-        self.arConfig = ARWorldTrackingSessionConfiguration()
+        self.arConfig = ARWorldTrackingConfiguration()
         self.arConfig.isLightEstimationEnabled = true
-        self.arConfig.planeDetection = ARWorldTrackingSessionConfiguration.PlaneDetection.horizontal
+        self.arConfig.planeDetection = ARWorldTrackingConfiguration.PlaneDetection.horizontal
         
         let config = Config()
         config.showStatistics = false
@@ -202,7 +202,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         }
         else{
             let plane = planes[(planeHit.first?.anchor?.identifier)!]
-            plane?.isRunway = false
             plane?.setMaterial(material: PBRMaterial.getRunwayMaterial())
             plane?.setRunwayTextureScale();
             self.runway = plane;
@@ -220,9 +219,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDe
         // Stop detecting new planes or updating existing ones.
         
         if disabled {
-            self.arConfig.planeDetection = ARWorldTrackingSessionConfiguration.PlaneDetection.init(rawValue: 0)
+            self.arConfig.planeDetection = ARWorldTrackingConfiguration.PlaneDetection.init(rawValue: 0)
         } else {
-            self.arConfig.planeDetection = ARWorldTrackingSessionConfiguration.PlaneDetection.horizontal
+            self.arConfig.planeDetection = ARWorldTrackingConfiguration.PlaneDetection.horizontal
         }
         
         self.sceneView.session.run(self.arConfig)
